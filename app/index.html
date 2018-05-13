@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <script type="text/javascript" src="./web3.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script> -->
+    <script src="./app.js"></script>
+    <script>
+        var contractABI = [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"teamName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"betAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"winner","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Winner","type":"event"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"uint256"}],"name":"makeBet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_index","type":"uint256"},{"name":"_team","type":"string"}],"name":"addTeams","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"uint256"}],"name":"getPredictions","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_winningTeamId","type":"uint256"},{"name":"_losingTeamId","type":"uint256"}],"name":"setResult","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]        
+        var contractAddress = '0xce82b68c080f8bfbe947b578cabb82eccbf8db93'
+        // var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/'))
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+        var contract = web3.eth.contract(contractABI).at(contractAddress)
+
+        function makeBet() {
+            var makeBet_matchID = document.getElementById("makeBet_matchID").value
+            var makeBet_teamID = document.getElementById("makeBet_teamID").value
+            var makeBet_value = document.getElementById("makeBet_value").value
+            console.log(makeBet_value)
+            contract.makeBet(makeBet_matchID, makeBet_teamID, {
+                from: web3.eth.accounts[0],
+                // gas: 200000,
+                value: makeBet_value
+            }, function (err, res) {
+                if (err) {
+                    alert('Transaction denied')
+                    throw (err)
+                } else {
+                    document.getElementById("makeBet").innerHTML = "Your tx hash: " + res
+                    alert('Bet placed')
+                }
+            })
+        }
+
+        function getPredictions() {
+            var getPredictions_matchID = document.getElementById("getPredictions_matchID").value
+            var getPredictions_teamID = document.getElementById("getPredictions_teamID").value
+            contract.getPredictions(getPredictions_matchID, getPredictions_teamID, {
+                from: web3.eth.accounts[0],
+                // gas: 200000
+            }, function (err, res) {
+                if (err) {
+                    alert('Transaction denied')
+                    throw (err)
+                } else {
+                    document.getElementById("predictions").innerHTML = "Addresses: " + res
+                }
+            })
+        }
+
+        function addTeams() {
+            var addTeams_index = document.getElementById("addTeams_index").value
+            var addTeams_team = document.getElementById("addTeams_team").value
+            contract.addTeams(addTeams_index, addTeams_team, {
+                from: web3.eth.accounts[0],
+                // gas: 200000
+            }, function (err, res) {
+                if (err) {
+                    alert('Transaction denied')
+                    throw (err)
+                } else {
+                    document.getElementById("addTeams").innerHTML = "Your tx hash: " + res
+                }
+            })
+        }
+
+        function setResult() {
+            var setResult_matchID = document.getElementById("setResult_matchID").value
+            var setResult_winningTeamID = document.getElementById("setResult_winningTeamID").value
+            var setResult_losingTeamID = document.getElementById("setResult_losingTeamID").value
+            contract.setResult(setResult_matchID, setResult_winningTeamID,setResult_losingTeamID, {
+                from: web3.eth.accounts[0],
+                // gas: 200000
+            }, function (err, res) {
+                if (err) {
+                    alert('Transaction denied')
+                    throw (err)
+                } else {
+                    document.getElementById("setResult").innerHTML = "Your tx hash: " + res
+                }
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <br>
+    <br>
+    <button onclick="makeBet()">makeBet</button>
+    <input id="makeBet_matchID" placeholder="Entr matchID">
+    <input id="makeBet_teamID" placeholder="Entr teamID">
+    <input id="makeBet_value" placeholder="Entr value">
+    <span id="makeBet"></span>
+    <br>
+    <br>
+    <button onclick="getPredictions()">getPredictions</button>
+    <input id="getPredictions_matchID" placeholder="Entr matchID">
+    <input id="getPredictions_teamID" placeholder="Entr teamID">
+    <span id="predictions"></span>
+    <br>
+    <br>
+
+    <hr>
+    
+    <p>Admin access-></p>
+    <br>
+    <br>
+    <button onclick="addTeams()">addTeams</button>
+    <input id="addTeams_index" placeholder="Entr index">
+    <input id="addTeams_team" placeholder="Entr team name">
+    <span id="addTeams"></span>
+    <br>
+    <br>
+    <button onclick="setResult()">setResult</button>
+    <input id="setResult_matchID" placeholder="Entr matchID">
+    <input id="setResult_winningTeamID" placeholder="Entr winning teamID">
+    <input id="setResult_losingTeamID" placeholder="Entr losing teamID">
+    <span id="setResult"></span>
+    <br>
+    <br>
+</body>
+
+</html>
