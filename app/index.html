@@ -6,8 +6,8 @@
     <!-- <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script> -->
     <script src="./app.js"></script>
     <script>
-        var contractABI = [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"teamName","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"betAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"winner","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Winner","type":"event"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"uint256"}],"name":"makeBet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_index","type":"uint256"},{"name":"_team","type":"string"}],"name":"addTeams","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"uint256"}],"name":"getPredictions","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_winningTeamId","type":"uint256"},{"name":"_losingTeamId","type":"uint256"}],"name":"setResult","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]        
-        var contractAddress = '0xce82b68c080f8bfbe947b578cabb82eccbf8db93'
+        var contractABI = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"betAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"winner","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Winner","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"bettor","type":"address"},{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"team","type":"string"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"BetPlaced","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"winningTeamId","type":"string"},{"indexed":false,"name":"losingTeamId","type":"string"}],"name":"ResultSet","type":"event"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"makeBet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"getPredictions","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"getPredictionNumber","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_winningTeamId","type":"string"},{"name":"_losingTeamId","type":"string"}],"name":"setResult","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"}],"name":"getResult","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"playerBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
+        var contractAddress = '0xffbfdb8cb144cd95ffdac1b8272db682f8e59661'
         // var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/'))
         if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
@@ -20,7 +20,7 @@
         function makeBet() {
             var makeBet_matchID = document.getElementById("makeBet_matchID").value
             var makeBet_teamID = document.getElementById("makeBet_teamID").value
-            var makeBet_value = document.getElementById("makeBet_value").value
+            var makeBet_value = document.getElementById("makeBet_value").value * 1000000000000000
             console.log(makeBet_value)
             contract.makeBet(makeBet_matchID, makeBet_teamID, {
                 from: web3.eth.accounts[0],
@@ -85,6 +85,79 @@
                 }
             })
         }
+        
+        function getResult(matchId) {
+            contract.getResult(matchId, {
+                from: web3.eth.accounts[0],
+                // gas: 200000
+            }, function (err, res) {
+                if (err) {
+                    alert('Transaction denied')
+                    throw (err)
+                } else {
+                    document.getElementById('result').innerText= res
+                }
+            })
+        }
+
+        function playerBalance() {
+            contract.playerBalance( {
+                from: web3.eth.accounts[0],
+                // gas: 200000
+            }, function (err, res) {
+                if (err) {
+                    alert('Transaction denied')
+                    throw (err)
+                } else {
+                    document.getElementById('playerBalance').innerText= res
+                }
+            })
+        }
+
+        function betPlacedEvent() {
+            console.log('at betPlacedEvent')
+            var event_betPlaced = contract.BetPlaced({}, {fromBlock: 0, toBlock: 'latest'})
+            event_betPlaced.get((err,result) => {
+                if(err) {
+                    throw(err)
+                }
+                else {
+                    result.forEach(res => {
+                        console.log(res)
+                        document.getElementById('log_betPlaced').innerHTML += '<br>' + res.event + JSON.stringify(res.args)
+                        
+                    })
+                    // console.log('one')
+                    // document.getElementById('log_betPlaced').innerHTML = res.event + JSON.stringify(res.args)
+                }
+            })
+        }
+        function winnerEvent() {
+            console.log('at winnerEvent')
+            var event_winner = contract.Winner();
+            event_winner.watch((err,res) => {
+                if(err) {
+                    throw(err)
+                }
+                else {
+                    console.log('two')
+                    document.getElementById('log_winner').innerHTML = res.event + JSON.stringify(res.args)
+                }
+            })
+        }
+        function resultSetEvent() {
+            console.log('at resultSetEvent')
+            var event_resultSet = contract.ResultSet();
+            event_resultSet.watch((err,res) => {
+                if(err) {
+                    throw(err)
+                }
+                else {
+                    console.log('two')
+                    document.getElementById('log_resultSet').innerHTML = res.event + JSON.stringify(res.args)
+                }
+            })
+        }
     </script>
 </head>
 
@@ -94,7 +167,7 @@
     <button onclick="makeBet()">makeBet</button>
     <input id="makeBet_matchID" placeholder="Entr matchID">
     <input id="makeBet_teamID" placeholder="Entr teamID">
-    <input id="makeBet_value" placeholder="Entr value">
+    <input id="makeBet_value" placeholder="Entr value"><span>(in finney)</span>
     <span id="makeBet"></span>
     <br>
     <br>
@@ -102,6 +175,25 @@
     <input id="getPredictions_matchID" placeholder="Entr matchID">
     <input id="getPredictions_teamID" placeholder="Entr teamID">
     <span id="predictions"></span>
+    <br>
+    <br>
+
+    <button onclick="getResult(document.getElementById('getResult_matchID').value)">getResult</button>
+    <input id="getResult_matchID" placeholder="Entr matchID">
+    <span id="result"></span>
+    <br>
+    <br>
+    <button onclick="playerBalance()">playerBalance</button>
+    <span id="playerBalance"></span>
+    <br>
+    <br>
+
+    <button onclick="betPlacedEvent()">betPlacedEvent</button>
+    <span id="log_betPlaced"></span><br>
+    <button onclick="winnerEvent()">winnerEvent</button>
+    <span id="log_winner"></span><br>
+    <button onclick="resultSetEvent()">resultSetEvent</button>
+    <span id="log_resultSet"></span>
     <br>
     <br>
 
@@ -124,5 +216,9 @@
     <br>
     <br>
 </body>
-
+<style>
+    span {
+        word-wrap: break-word;
+    }
+</style>
 </html>
