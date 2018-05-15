@@ -11,24 +11,24 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x6080604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610188806100536000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b514610046575b600080fd5b34801561005257600080fd5b5061005b61005d565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610122576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f53656e646572206e6f7420617574686f72697a6564000000000000000000000081525060200191505060405180910390fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a72305820ec4c91305bf00c76b88542b68e20824451946ccdf61732624b518c9f61c376a20029",
-  "deployedBytecode": "0x608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b514610046575b600080fd5b34801561005257600080fd5b5061005b61005d565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610122576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f53656e646572206e6f7420617574686f72697a6564000000000000000000000081525060200191505060405180910390fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a72305820ec4c91305bf00c76b88542b68e20824451946ccdf61732624b518c9f61c376a20029",
-  "sourceMap": "51:112:2:-;;;111:10:3;103:5;;:18;;;;;;;;;;;;;;;;;;51:112:2;;;;;;",
-  "deployedSourceMap": "51:112:2:-;;;;;;;;;;;;;;;;;;;;;;;;82:78;;8:9:-1;5:2;;;30:1;27;20:12;5:2;82:78:2;;;;;;;108:5;;;;;;;;;;;205:8:3;191:22;;:10;:22;;;183:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;146:5:2;;;;;;;;;;;133:19;;",
-  "source": "pragma solidity ^0.4.23;\r\nimport \"./Owned.sol\";\r\n\r\ncontract Mortal is Owned{\r\n    function kill() onlyOwner(owner) public {\r\n        selfdestruct(owner);\r\n    }\r\n}",
-  "sourcePath": "C:\\Users\\shubham.suyal\\Desktop\\blockchain training\\IPLBettingGame\\contracts\\Mortal.sol",
+  "bytecode": "0x6080604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610188806100536000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b514610046575b600080fd5b34801561005257600080fd5b5061005b61005d565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610122576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f53656e646572206e6f7420617574686f72697a6564000000000000000000000081525060200191505060405180910390fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a723058201fce5e40d8cf832d7cee139fc779469d6ccaf6415303903bedcdc4ce01ac871b0029",
+  "deployedBytecode": "0x608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b514610046575b600080fd5b34801561005257600080fd5b5061005b61005d565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff168073ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610122576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260158152602001807f53656e646572206e6f7420617574686f72697a6564000000000000000000000081525060200191505060405180910390fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff00a165627a7a723058201fce5e40d8cf832d7cee139fc779469d6ccaf6415303903bedcdc4ce01ac871b0029",
+  "sourceMap": "48:108:2:-;;;106:10:3;98:5;;:18;;;;;;;;;;;;;;;;;;48:108:2;;;;;;",
+  "deployedSourceMap": "48:108:2:-;;;;;;;;;;;;;;;;;;;;;;;;78:76;;8:9:-1;5:2;;;30:1;27;20:12;5:2;78:76:2;;;;;;;104:5;;;;;;;;;;;197:8:3;183:22;;:10;:22;;;175:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;141:5:2;;;;;;;;;;;128:19;;",
+  "source": "pragma solidity ^0.4.23;\nimport \"./Owned.sol\";\n\ncontract Mortal is Owned{\n    function kill() onlyOwner(owner) public {\n        selfdestruct(owner);\n    }\n}",
+  "sourcePath": "/Users/sacros/code/IPLBettingGame/contracts/Mortal.sol",
   "ast": {
-    "absolutePath": "/C/Users/shubham.suyal/Desktop/blockchain training/IPLBettingGame/contracts/Mortal.sol",
+    "absolutePath": "/Users/sacros/code/IPLBettingGame/contracts/Mortal.sol",
     "exportedSymbols": {
       "Mortal": [
-        393
+        455
       ]
     },
-    "id": 394,
+    "id": 456,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 378,
+        "id": 440,
         "literals": [
           "solidity",
           "^",
@@ -39,13 +39,13 @@
         "src": "0:24:2"
       },
       {
-        "absolutePath": "/C/Users/shubham.suyal/Desktop/blockchain training/IPLBettingGame/contracts/Owned.sol",
+        "absolutePath": "/Users/sacros/code/IPLBettingGame/contracts/Owned.sol",
         "file": "./Owned.sol",
-        "id": 379,
+        "id": 441,
         "nodeType": "ImportDirective",
-        "scope": 394,
-        "sourceUnit": 422,
-        "src": "26:21:2",
+        "scope": 456,
+        "sourceUnit": 484,
+        "src": "25:21:2",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -55,40 +55,40 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 380,
+              "id": 442,
               "name": "Owned",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 421,
-              "src": "70:5:2",
+              "referencedDeclaration": 483,
+              "src": "67:5:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Owned_$421",
+                "typeIdentifier": "t_contract$_Owned_$483",
                 "typeString": "contract Owned"
               }
             },
-            "id": 381,
+            "id": 443,
             "nodeType": "InheritanceSpecifier",
-            "src": "70:5:2"
+            "src": "67:5:2"
           }
         ],
         "contractDependencies": [
-          421
+          483
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 393,
+        "id": 455,
         "linearizedBaseContracts": [
-          393,
-          421
+          455,
+          483
         ],
         "name": "Mortal",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 391,
+              "id": 453,
               "nodeType": "Block",
-              "src": "122:38:2",
+              "src": "118:36:2",
               "statements": [
                 {
                   "expression": {
@@ -96,12 +96,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 388,
+                        "id": 450,
                         "name": "owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 397,
-                        "src": "146:5:2",
+                        "referencedDeclaration": 459,
+                        "src": "141:5:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -115,18 +115,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 387,
+                      "id": 449,
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 444,
-                      "src": "133:12:2",
+                      "referencedDeclaration": 506,
+                      "src": "128:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 389,
+                    "id": 451,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -134,20 +134,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "133:19:2",
+                    "src": "128:19:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 390,
+                  "id": 452,
                   "nodeType": "ExpressionStatement",
-                  "src": "133:19:2"
+                  "src": "128:19:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 392,
+            "id": 454,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -156,76 +156,76 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 384,
+                    "id": 446,
                     "name": "owner",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 397,
-                    "src": "108:5:2",
+                    "referencedDeclaration": 459,
+                    "src": "104:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   }
                 ],
-                "id": 385,
+                "id": 447,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 383,
+                  "id": 445,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 420,
-                  "src": "98:9:2",
+                  "referencedDeclaration": 482,
+                  "src": "94:9:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
                     "typeString": "modifier (address)"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "98:16:2"
+                "src": "94:16:2"
               }
             ],
             "name": "kill",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 382,
+              "id": 444,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "95:2:2"
+              "src": "91:2:2"
             },
             "payable": false,
             "returnParameters": {
-              "id": 386,
+              "id": 448,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "122:0:2"
+              "src": "118:0:2"
             },
-            "scope": 393,
-            "src": "82:78:2",
+            "scope": 455,
+            "src": "78:76:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 394,
-        "src": "51:112:2"
+        "scope": 456,
+        "src": "48:108:2"
       }
     ],
-    "src": "0:163:2"
+    "src": "0:156:2"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/shubham.suyal/Desktop/blockchain training/IPLBettingGame/contracts/Mortal.sol",
+    "absolutePath": "/Users/sacros/code/IPLBettingGame/contracts/Mortal.sol",
     "exportedSymbols": {
       "Mortal": [
-        393
+        455
       ]
     },
-    "id": 394,
+    "id": 456,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 378,
+        "id": 440,
         "literals": [
           "solidity",
           "^",
@@ -236,13 +236,13 @@
         "src": "0:24:2"
       },
       {
-        "absolutePath": "/C/Users/shubham.suyal/Desktop/blockchain training/IPLBettingGame/contracts/Owned.sol",
+        "absolutePath": "/Users/sacros/code/IPLBettingGame/contracts/Owned.sol",
         "file": "./Owned.sol",
-        "id": 379,
+        "id": 441,
         "nodeType": "ImportDirective",
-        "scope": 394,
-        "sourceUnit": 422,
-        "src": "26:21:2",
+        "scope": 456,
+        "sourceUnit": 484,
+        "src": "25:21:2",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -252,40 +252,40 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 380,
+              "id": 442,
               "name": "Owned",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 421,
-              "src": "70:5:2",
+              "referencedDeclaration": 483,
+              "src": "67:5:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Owned_$421",
+                "typeIdentifier": "t_contract$_Owned_$483",
                 "typeString": "contract Owned"
               }
             },
-            "id": 381,
+            "id": 443,
             "nodeType": "InheritanceSpecifier",
-            "src": "70:5:2"
+            "src": "67:5:2"
           }
         ],
         "contractDependencies": [
-          421
+          483
         ],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 393,
+        "id": 455,
         "linearizedBaseContracts": [
-          393,
-          421
+          455,
+          483
         ],
         "name": "Mortal",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 391,
+              "id": 453,
               "nodeType": "Block",
-              "src": "122:38:2",
+              "src": "118:36:2",
               "statements": [
                 {
                   "expression": {
@@ -293,12 +293,12 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 388,
+                        "id": 450,
                         "name": "owner",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 397,
-                        "src": "146:5:2",
+                        "referencedDeclaration": 459,
+                        "src": "141:5:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -312,18 +312,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 387,
+                      "id": 449,
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 444,
-                      "src": "133:12:2",
+                      "referencedDeclaration": 506,
+                      "src": "128:12:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address)"
                       }
                     },
-                    "id": 389,
+                    "id": 451,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -331,20 +331,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "133:19:2",
+                    "src": "128:19:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 390,
+                  "id": 452,
                   "nodeType": "ExpressionStatement",
-                  "src": "133:19:2"
+                  "src": "128:19:2"
                 }
               ]
             },
             "documentation": null,
-            "id": 392,
+            "id": 454,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -353,63 +353,63 @@
                 "arguments": [
                   {
                     "argumentTypes": null,
-                    "id": 384,
+                    "id": 446,
                     "name": "owner",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 397,
-                    "src": "108:5:2",
+                    "referencedDeclaration": 459,
+                    "src": "104:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   }
                 ],
-                "id": 385,
+                "id": 447,
                 "modifierName": {
                   "argumentTypes": null,
-                  "id": 383,
+                  "id": 445,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 420,
-                  "src": "98:9:2",
+                  "referencedDeclaration": 482,
+                  "src": "94:9:2",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$_t_address_$",
                     "typeString": "modifier (address)"
                   }
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "98:16:2"
+                "src": "94:16:2"
               }
             ],
             "name": "kill",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 382,
+              "id": 444,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "95:2:2"
+              "src": "91:2:2"
             },
             "payable": false,
             "returnParameters": {
-              "id": 386,
+              "id": 448,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "122:0:2"
+              "src": "118:0:2"
             },
-            "scope": 393,
-            "src": "82:78:2",
+            "scope": 455,
+            "src": "78:76:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 394,
-        "src": "51:112:2"
+        "scope": 456,
+        "src": "48:108:2"
       }
     ],
-    "src": "0:163:2"
+    "src": "0:156:2"
   },
   "compiler": {
     "name": "solc",
@@ -417,5 +417,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-05-14T06:24:58.779Z"
+  "updatedAt": "2018-05-15T08:37:07.695Z"
 }

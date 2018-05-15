@@ -3,11 +3,10 @@
 
 <head>
     <!-- <script type="text/javascript" src="./web3.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script> -->
-    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script>
-        var contractABI = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"betAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"winner","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Winner","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"bettor","type":"address"},{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"team","type":"string"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"BetPlaced","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"winningTeamId","type":"string"},{"indexed":false,"name":"losingTeamId","type":"string"}],"name":"ResultSet","type":"event"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"makeBet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"getPredictions","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"getPredictionNumber","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_winningTeamId","type":"string"},{"name":"_losingTeamId","type":"string"}],"name":"setResult","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"}],"name":"getResult","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"playerBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
-        var contractAddress = '0xffbfdb8cb144cd95ffdac1b8272db682f8e59661'
+        var contractABI = [{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"result","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"currentGame","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"},{"name":"","type":"address"}],"name":"betAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"minimumAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"winner","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Winner","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"bettor","type":"address"},{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"team","type":"string"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"BetPlaced","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"winningTeamId","type":"string"},{"indexed":false,"name":"losingTeamId","type":"string"}],"name":"ResultSet","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"winners","type":"address[]"}],"name":"Winners","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"matchId","type":"uint256"},{"indexed":false,"name":"losers","type":"address[]"}],"name":"Losers","type":"event"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"},{"name":"_timestamp","type":"uint256"}],"name":"makeBet","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"getPredictions","outputs":[{"name":"","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_team","type":"string"}],"name":"getPredictionNumber","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_matchId","type":"uint256"},{"name":"_winningTeamId","type":"string"},{"name":"_losingTeamId","type":"string"}],"name":"setResult","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_matchId","type":"uint256"}],"name":"getResult","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"playerBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCurrentGame","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
+        var contractAddress = '0x1aa5f3952ddc222702d354ef5a4cd6e4305f1307'
         // var web3 = new Web3(new Web3.providers.HttpProvider('https://ropsten.infura.io/'))
         if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
@@ -85,7 +84,7 @@
                 }
             })
         }
-        
+
         function getResult(matchId) {
             contract.getResult(matchId, {
                 from: web3.eth.accounts[0],
@@ -125,7 +124,7 @@
                     result.forEach(res => {
                         console.log(res)
                         document.getElementById('log_betPlaced').innerHTML += '<br>' + res.event + JSON.stringify(res.args)
-                        
+
                     })
                     // console.log('one')
                     // document.getElementById('log_betPlaced').innerHTML = res.event + JSON.stringify(res.args)
@@ -198,7 +197,7 @@
     <br>
 
     <hr>
-    
+
     <p>Admin access-></p>
     <br>
     <br>
